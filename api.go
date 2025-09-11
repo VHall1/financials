@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"encoding/json"
 	"net/http"
 	"time"
@@ -9,12 +10,14 @@ import (
 
 type HTTPServer struct {
 	addr string
+	db   *sql.DB
 	svc  *MonzoClient // TODO: define an interface for this so we're not tied to MonzoClient
 }
 
-func NewHTTPServer(addr string, svc *MonzoClient) *HTTPServer {
+func NewHTTPServer(addr string, db *sql.DB, svc *MonzoClient) *HTTPServer {
 	return &HTTPServer{
 		addr: addr,
+		db:   db,
 		svc:  svc,
 	}
 }
