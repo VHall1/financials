@@ -1,7 +1,25 @@
 services:
-  app:
+  adminer:
+    image: adminer:latest
+    ports:
+      - 8080:8080
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+
+  financials:
     build: .
     env_file:
       - .env
     ports:
-      - "8080:8080"
+      - 9000:80
+
+volumes:
+  postgres_data:
+    driver: local

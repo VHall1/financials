@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	srv := NewHTTPServer(":8080", NewMonzoClient(os.Getenv("MONZO_TOKEN")))
+	srv := NewHTTPServer(":80", NewMonzoClient(os.Getenv("MONZO_TOKEN")))
 	if err := srv.Start(); err != nil {
 		log.Fatal(err)
 	}
